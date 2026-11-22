@@ -1,0 +1,184 @@
+[
+ {
+  "name": "fib_iter",
+  "instret": 147,
+  "bp0": {
+   "cycles": 189,
+   "instret": 147,
+   "stalls": 0,
+   "flushes": 19,
+   "cond_br": 20,
+   "cond_miss": 19,
+   "jumps": 0,
+   "jump_miss": 0,
+   "cpi": 1.2857142857142858
+  },
+  "bp1": {
+   "cycles": 155,
+   "instret": 147,
+   "stalls": 0,
+   "flushes": 2,
+   "cond_br": 20,
+   "cond_miss": 2,
+   "jumps": 0,
+   "jump_miss": 0,
+   "cpi": 1.054421768707483
+  }
+ },
+ {
+  "name": "fib_rec",
+  "instret": 11578,
+  "bp0": {
+   "cycles": 18896,
+   "instret": 11578,
+   "stalls": 1218,
+   "flushes": 3048,
+   "cond_br": 1219,
+   "cond_miss": 610,
+   "jumps": 2438,
+   "jump_miss": 2438,
+   "cpi": 1.6320608049749525
+  },
+  "bp1": {
+   "cycles": 15530,
+   "instret": 11578,
+   "stalls": 1218,
+   "flushes": 1365,
+   "cond_br": 1219,
+   "cond_miss": 607,
+   "jumps": 2438,
+   "jump_miss": 758,
+   "cpi": 1.3413370184833304
+  }
+ },
+ {
+  "name": "bubble_sort",
+  "instret": 2887,
+  "bp0": {
+   "cycles": 4190,
+   "instret": 2887,
+   "stalls": 317,
+   "flushes": 491,
+   "cond_br": 651,
+   "cond_miss": 221,
+   "jumps": 270,
+   "jump_miss": 270,
+   "cpi": 1.4513335642535503
+  },
+  "bp1": {
+   "cycles": 3454,
+   "instret": 2887,
+   "stalls": 317,
+   "flushes": 123,
+   "cond_br": 651,
+   "cond_miss": 122,
+   "jumps": 270,
+   "jump_miss": 1,
+   "cpi": 1.1963976446137858
+  }
+ },
+ {
+  "name": "matmul4",
+  "instret": 2679,
+  "bp0": {
+   "cycles": 3727,
+   "instret": 2679,
+   "stalls": 16,
+   "flushes": 514,
+   "cond_br": 516,
+   "cond_miss": 210,
+   "jumps": 304,
+   "jump_miss": 304,
+   "cpi": 1.391190742814483
+  },
+  "bp1": {
+   "cycles": 3065,
+   "instret": 2679,
+   "stalls": 16,
+   "flushes": 183,
+   "cond_br": 516,
+   "cond_miss": 180,
+   "jumps": 304,
+   "jump_miss": 3,
+   "cpi": 1.1440836132885406
+  }
+ },
+ {
+  "name": "sieve",
+  "instret": 3184,
+  "bp0": {
+   "cycles": 4759,
+   "instret": 3184,
+   "stalls": 211,
+   "flushes": 680,
+   "cond_br": 689,
+   "cond_miss": 421,
+   "jumps": 259,
+   "jump_miss": 259,
+   "cpi": 1.4946608040201006
+  },
+  "bp1": {
+   "cycles": 3441,
+   "instret": 3184,
+   "stalls": 211,
+   "flushes": 21,
+   "cond_br": 689,
+   "cond_miss": 20,
+   "jumps": 259,
+   "jump_miss": 1,
+   "cpi": 1.08071608040201
+  }
+ },
+ {
+  "name": "crc32",
+  "instret": 3187,
+  "bp0": {
+   "cycles": 4833,
+   "instret": 3187,
+   "stalls": 64,
+   "flushes": 789,
+   "cond_br": 1088,
+   "cond_miss": 789,
+   "jumps": 0,
+   "jump_miss": 0,
+   "cpi": 1.5164731722623157
+  },
+  "bp1": {
+   "cycles": 3879,
+   "instret": 3187,
+   "stalls": 64,
+   "flushes": 312,
+   "cond_br": 1088,
+   "cond_miss": 312,
+   "jumps": 0,
+   "jump_miss": 0,
+   "cpi": 1.2171320991528083
+  }
+ },
+ {
+  "name": "strops",
+  "instret": 901,
+  "bp0": {
+   "cycles": 1285,
+   "instret": 901,
+   "stalls": 120,
+   "flushes": 130,
+   "cond_br": 163,
+   "cond_miss": 25,
+   "jumps": 105,
+   "jump_miss": 105,
+   "cpi": 1.4261931187569368
+  },
+  "bp1": {
+   "cycles": 1067,
+   "instret": 901,
+   "stalls": 120,
+   "flushes": 21,
+   "cond_br": 163,
+   "cond_miss": 17,
+   "jumps": 105,
+   "jump_miss": 4,
+   "cpi": 1.1842397336293007
+  }
+ }
+]

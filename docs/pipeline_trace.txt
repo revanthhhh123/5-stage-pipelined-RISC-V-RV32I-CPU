@@ -1,0 +1,31 @@
+cyc  IF                    | ID                    | EX                    | MEM                   | WB                    | events
+-----------------------------------------------------------------------------------------------------------------------------------
+  1  li t0, 5              | -                     | -                     | -                     | -                     | 
+  2  li t1, 7              | li t0, 5              | -                     | -                     | -                     | 
+  3  add t2, t0, t1        | li t1, 7              | li t0, 5              | -                     | -                     | 
+  4  sub t3, t2, t0        | add t2, t0, t1        | li t1, 7              | li t0, 5              | -                     | 
+  5  la s0, buf            | sub t3, t2, t0        | add t2, t0, t1        | li t1, 7              | li t0, 5              | fwd rs1<-MEM/WB, fwd rs2<-EX/MEM
+  6  addi s0, s0, 64       | la s0, buf            | sub t3, t2, t0        | add t2, t0, t1        | li t1, 7              | fwd rs1<-EX/MEM
+  7  sw t2, 0(s0)          | addi s0, s0, 64       | la s0, buf            | sub t3, t2, t0        | add t2, t0, t1        | 
+  8  lw t4, 0(s0)          | sw t2, 0(s0)          | addi s0, s0, 64       | la s0, buf            | sub t3, t2, t0        | fwd rs1<-EX/MEM
+  9  add t5, t4, t4        | lw t4, 0(s0)          | sw t2, 0(s0)          | addi s0, s0, 64       | la s0, buf            | fwd rs1<-EX/MEM
+ 10  li t6, 3              | add t5, t4, t4        | lw t4, 0(s0)          | sw t2, 0(s0)          | addi s0, s0, 64       | LOAD-USE STALL (hold IF/ID, bubble->EX), fwd rs1<-MEM/WB
+ 11  li t6, 3              | add t5, t4, t4        | -                     | lw t4, 0(s0)          | sw t2, 0(s0)          | 
+ 12  loop: addi t6, t6, -1 | li t6, 3              | add t5, t4, t4        | -                     | lw t4, 0(s0)          | fwd rs1<-MEM/WB, fwd rs2<-MEM/WB
+ 13  bnez t6, loop         | loop: addi t6, t6, -1 | li t6, 3              | add t5, t4, t4        | -                     | 
+ 14  mv t4, t5             | bnez t6, loop         | loop: addi t6, t6, -1 | li t6, 3              | add t5, t4, t4        | fwd rs1<-EX/MEM, fwd rs2<-EX/MEM
+ 15  mv t4, t5             | mv t4, t5             | bnez t6, loop         | loop: addi t6, t6, -1 | li t6, 3              | MISPREDICT: flush IF+ID, redirect PC, fwd rs1<-EX/MEM
+ 16  loop: addi t6, t6, -1 | -                     | -                     | bnez t6, loop         | loop: addi t6, t6, -1 | 
+ 17  bnez t6, loop         | loop: addi t6, t6, -1 | -                     | -                     | bnez t6, loop         | 
+ 18  loop: addi t6, t6, -1 | bnez t6, loop         | loop: addi t6, t6, -1 | -                     | -                     | 
+ 19  bnez t6, loop         | loop: addi t6, t6, -1 | bnez t6, loop         | loop: addi t6, t6, -1 | -                     | fwd rs1<-EX/MEM
+ 20  loop: addi t6, t6, -1 | bnez t6, loop         | loop: addi t6, t6, -1 | bnez t6, loop         | loop: addi t6, t6, -1 | fwd rs1<-MEM/WB, fwd rs2<-MEM/WB
+ 21  bnez t6, loop         | loop: addi t6, t6, -1 | bnez t6, loop         | loop: addi t6, t6, -1 | bnez t6, loop         | MISPREDICT: flush IF+ID, redirect PC, fwd rs1<-EX/MEM
+ 22  mv t4, t5             | -                     | -                     | bnez t6, loop         | loop: addi t6, t6, -1 | 
+ 23  mv t4, t5             | mv t4, t5             | -                     | -                     | bnez t6, loop         | 
+ 24  mv t4, t5             | mv t4, t5             | mv t4, t5             | -                     | -                     | 
+ 25  ecall                 | mv t4, t5             | mv t4, t5             | mv t4, t5             | -                     | 
+ 26  (past end: nop)       | ecall                 | mv t4, t5             | mv t4, t5             | mv t4, t5             | 
+ 27  (past end: nop)       | -                     | ecall                 | mv t4, t5             | mv t4, t5             | 
+ 28  (past end: nop)       | -                     | -                     | ecall                 | mv t4, t5             | 
+ 29  (past end: nop)       | -                     | -                     | -                     | ecall                 | 

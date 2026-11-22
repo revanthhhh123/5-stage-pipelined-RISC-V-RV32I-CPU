@@ -1,0 +1,37 @@
+  [KILLED  by directed] no EX/MEM forwarding (rs1)
+  [KILLED  by directed] no EX/MEM forwarding (rs2)
+  [KILLED  by directed] no MEM/WB forwarding (rs1)
+  [KILLED  by directed] no MEM/WB forwarding (rs2)
+  [KILLED  by directed] forward priority swapped
+  [KILLED  by directed] forwarding from x0 allowed
+  [KILLED  by directed] load-use stall removed
+  [KILLED  by directed] load-use ignores rs2
+  [KILLED  by directed] regfile write-through removed
+  [KILLED  by directed] x0 writable
+  [KILLED  by directed] BNE behaves like BEQ
+  [KILLED  by directed] BLT signed->unsigned
+  [KILLED  by directed] BGEU uses signed compare
+  [KILLED  by random  ] JALR bit0 not cleared
+  [KILLED  by directed] JAL/JALR link = pc (not pc+4)
+  [KILLED  by directed] mispredict ignores wrong target
+  [KILLED  by directed] mispredict never flushes ID
+  [KILLED  by directed] wrong-path fetch not squashed
+  [KILLED  by directed] no squash after ECALL
+  [KILLED  by directed] LB not sign extended
+  [KILLED  by directed] LH not sign extended
+  [KILLED  by directed] SB writes wrong lane
+  [KILLED  by directed] SH always low half
+  [KILLED  by directed] load byte-lane shift removed
+  [KILLED  by directed] store data from stale rs2
+  [KILLED  by directed] SRA acts as SRL
+  [KILLED  by directed] SLT unsigned
+  [KILLED  by directed] SUB acts as ADD
+  [KILLED  by directed] shift amount uses 6 bits
+  [KILLED  by directed] SRAI/SRLI funct7 ignored
+  [KILLED  by directed] OP-IMM treats f7 as SUB
+  [KILLED  by directed] AUIPC uses rs1
+  [KILLED  by directed] B-type imm bit 11 wrong
+  [KILLED  by directed] J-type imm bit order wrong
+  [KILLED  by directed] S-type imm low bits wrong
+
+mutation score: 35 / 35 mutants killed

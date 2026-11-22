@@ -1,0 +1,20 @@
+# -----------------------------------------------------------------------------
+#  Yosys generic synthesis of the CPU core (no FPGA / no standard-cell library)
+#  usage:  yosys -q -l build/yosys.log synth/synth.ys
+#  Reports gate counts, flop counts and the longest combinational path.
+# -----------------------------------------------------------------------------
+read_verilog -DSYNTHESIS -I rtl rtl/alu.v rtl/regfile.v rtl/imm_gen.v rtl/control_unit.v \
+                         rtl/forwarding_unit.v rtl/hazard_unit.v rtl/branch_predictor.v rtl/cpu_core.v
+hierarchy -check -top cpu_core
+
+# 1) hierarchical area breakdown
+synth -top cpu_core
+tee -o build/stat_hier.txt stat
+
+# 2) flat netlist -> logic depth
+flatten
+opt -full
+abc -g AND,NAND,OR,NOR,XOR,XNOR,MUX
+opt_clean
+tee -o build/ltp.txt ltp -noff
+tee -o build/stat_flat.txt stat
