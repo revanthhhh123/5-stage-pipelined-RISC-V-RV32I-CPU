@@ -24,7 +24,7 @@ def run_yosys(bp, tag, idx=5):
             'chparam -set BP_ENABLE %d -set BP_INDEX_BITS %d cpu_core' % (bp, idx),
             'hierarchy -check -top cpu_core',
             'synth -top cpu_core -flatten',
-            'abc -g AND,NAND,OR,NOR,XOR,XNOR,MUX',
+            'abc -g AND,OR,XOR,XNOR,MUX,NAND,NOR',
             'opt_clean',
             'tee -o build/ltp_%s.txt ltp -noff' % tag,
             'tee -o build/stat_%s.txt stat' % tag]
