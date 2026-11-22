@@ -14,7 +14,7 @@ tee -o build/stat_hier.txt stat
 # 2) flat netlist -> logic depth
 flatten
 opt -full
-abc -g AND,OR,XOR,XNOR,MUX,NAND,NOR
+abc -g AND
 opt_clean
 tee -o build/ltp.txt ltp -noff
 tee -o build/stat_flat.txt stat
